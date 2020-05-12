@@ -1,0 +1,283 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>AppSheetハンズオン【基礎編】</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="dist"
+                  title="AppSheetハンズオン【基礎編】"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="データベースを作成しよう！" duration="0">
+        <h2 is-upgraded>1-1. 新規スプレッドシートを作成する</h2>
+<p>下記URLをクリックして新規スプレッドシートを作成しましょう。このスプレッドシートに登録する書籍データベースを作成します。</p>
+<p><a href="https://sheets.google.com/create" target="_blank">https://sheets.google.com/create</a></p>
+<p>ファイル名は <code>bookdata</code> としました。ヘッダーをそれぞれ登録します。ヘッダーの文字は太字にするとAppSheet側で認識されやすくなります。</p>
+<ul>
+<li>ISBNコード</li>
+<li>タイトル</li>
+<li>保有チェック</li>
+<li>メモ</li>
+<li>画像</li>
+<li>作成日時</li>
+<li>更新日時</li>
+</ul>
+<aside class="special"><p>ISBN（アイエスビーエヌ）は、International Standard Book Number の略称。図書（書籍）および資料の識別用に設けられた国際規格コード（番号システム）の一種</p>
+</aside>
+<p class="image-container"><img alt="s100" src="img/dae07148f4b230ea.png"></p>
+<h2 is-upgraded>1-2. 計算用スプレッドシートを作成する</h2>
+<p>Step3で使用するためのスプレッドシートを作成します。新規スプレッドシートを作成してください。</p>
+<p><a href="https://sheets.google.com/create" target="_blank">https://sheets.google.com/create</a></p>
+<p>ファイル名は <code>Form</code> としました。ヘッダーをそれぞれ登録してください。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Key</p>
+</td><td colspan="1" rowspan="1"><p>1</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Choice</p>
+</td><td colspan="1" rowspan="1"><p>持っている</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s101" src="img/a146a938364ebc10.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="AppSheetの設定をしよう！" duration="0">
+        <h2 is-upgraded>2-1. AppSheetにサインアップする</h2>
+<p>AppSheetを設定します。下記URLにアクセスしてください。</p>
+<p><a href="https://www.appsheet.com/" target="_blank">https://www.appsheet.com/</a></p>
+<p>すでにアカウントをお持ちの方はログインしておいてください。始めてAppSheetにアクセスされる方は、画面右上や画面中央にある <code>Start for free</code> ボタンをクリックします。</p>
+<p class="image-container"><img alt="s200" src="img/1ce514acb4f5496.png"></p>
+<p>連携するデータベースを選択します。 <code>Google Sheets and Forms</code> をクリックしてください。</p>
+<p class="image-container"><img alt="s201" src="img/64bcf61fbde9c33d.png"></p>
+<p>お持ちのGoogleアカウントでログインして［許可］ボタンをクリックします。</p>
+<p class="image-container"><img alt="s202" src="img/48a16d2b9595bd35.png"></p>
+<h2 is-upgraded>2-2. 新規アプリを作成する</h2>
+<p><code>Make a new app</code> をクリックします。</p>
+<p class="image-container"><img alt="s203" src="img/d169a81fbc1a3401.png"></p>
+<p><code>Start with your own data</code> をクリックします。</p>
+<p class="image-container"><img alt="s204" src="img/916d71942f296bec.png"></p>
+<p>アプリ名を入力します。 <code>BookDatabase</code> としました。カテゴリは <code>Other</code> を選択します。 <code>Next step: Choose your data</code> ボタンをクリックしてください。</p>
+<aside class="warning"><p>アプリ名は日本語が使えないので注意してください。</p>
+</aside>
+<p class="image-container"><img alt="s205" src="img/6ce472a38d8b060f.png"></p>
+<p>スプレッドシートファイルを選択します。Step.1で作成した <code>bookdata</code> ファイルを選択して <code>Select</code> ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="s206" src="img/5dc7094dfac0a0fe.png"></p>
+<p>これでAppSheetの画面が表示されます。</p>
+<p class="image-container"><img alt="s207" src="img/a8c3cdd733f3d7be.png"></p>
+<h2 is-upgraded>2-3. UXの設定をする</h2>
+<p>画面の見た目の設定を行います。左側メニューにある <code>UX</code> をクリックして、［シート1］をクリックしてください。</p>
+<p class="image-container"><img alt="s208" src="img/45aecaa3fcd88992.png"></p>
+<p>「シート1」という名前だとわかりにくいので、View nameを <code>BookListView</code> に変更してください。</p>
+<p class="image-container"><img alt="s209" src="img/5199dadfcb752881.png"></p>
+<p>下にスクロールして、VIEW OPTIONS項目にある <code>Primary header</code> は「タイトル」を、 <code>Secondary header</code> は「保有チェック」をそれぞれ選択します。これは見た目の問題なので、お好きな項目を選択して構いません。ISBNコードの方がわかりやすいという方はそちらを選択しても問題ありません。</p>
+<p class="image-container"><img alt="s210" src="img/be8001a58558c0dc.png"></p>
+<p>下にスクロールして DISPLAY項目にある <code>Display name</code> を「書籍リスト」と名前を編集してください。</p>
+<p class="image-container"><img alt="s211" src="img/17c9f9005b881ad5.png"></p>
+<p>右上の <code>SAVE</code> ボタンをクリックすると、右側にあるアプリプレビュー画面のタブ部分が「BookListView」から「書籍リスト」と名前が変わります。</p>
+<p class="image-container"><img alt="s212" src="img/60a90c95109b53ec.png"></p>
+<p><code>Brand</code> タブをクリックして、一番下にある <code>HEADER &amp; FOOTER</code> カテゴリにある <code>Show view name in header</code> を「ON」に切り替えてください。これで、アプリのヘッダーに先程設定した「書籍リスト」と表示されるようになります。</p>
+<p class="image-container"><img alt="s213" src="img/5350d9d020e2669e.png"></p>
+<h2 is-upgraded>2-4. ローカライズを設定する</h2>
+<p>アプリのローカライズも簡単に設定することができます。今回のアプリで使う言葉だけをローカライズしてみましょう。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Save</p>
+</td><td colspan="1" rowspan="1"><p>保存する</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Cancel</p>
+</td><td colspan="1" rowspan="1"><p>キャンセル</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Select photo source</p>
+</td><td colspan="1" rowspan="1"><p>カメラロール</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Take a Photo</p>
+</td><td colspan="1" rowspan="1"><p>写真を撮る</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Choose from Existing</p>
+</td><td colspan="1" rowspan="1"><p>カメラロール</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s214" src="img/5c8ebb12960c8794.png"></p>
+<h2 is-upgraded>2-5. データベースを設定する</h2>
+<p>左側メニューにある「Data」をクリックして、「シート1」をクリックします。Table nameを 「Data」という名前に変更します。変更したら右上の <code>SAVE</code> ボタンをクリックします。</p>
+<p class="image-container"><img alt="s215" src="img/5013932ef7866416.png"></p>
+<p><code>Columns</code> タブをクリックしてデータの中身を設定します。設定するデータがどういう形式なのかを設定することができます。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>ISBNコード</p>
+</td><td colspan="1" rowspan="1"><p>Text</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>保有チェック</p>
+</td><td colspan="1" rowspan="1"><p>Enum</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>画像</p>
+</td><td colspan="1" rowspan="1"><p>Image</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>作成日時</p>
+</td><td colspan="1" rowspan="1"><p>DateTime</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>更新日時</p>
+</td><td colspan="1" rowspan="1"><p>DateTime</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s216" src="img/8b70bd50c43fbfb6.png"></p>
+<p>さらにそれぞれの項目に詳細設定を行います。まずは「ISBNコード」の左側にある編集ボタンをクリックします。 <code>OTHER PROPERTIES</code> 項目にある、 <code>Scannable</code> を有効化にしてください。これを有効化するとQRコードやバーコードの読み取りをすることができるようになります。</p>
+<p class="image-container"><img alt="s217" src="img/e89dd138556da1a7.png"></p>
+<p>続いて「保有チェック」の設定を行います。編集ボタンをクリックします。 <code>TYPE DETAILES</code> 項目にある <code>Values</code> に「持っていない」「持っている」をそれぞれ追加してください。</p>
+<p class="image-container"><img alt="s218" src="img/238703ef8426e366.png"></p>
+<p>作成日時と更新日時をそれぞれ編集します。 <code>AUTO COMPUTE</code> 項目にある <code>Initial value</code> をクリックしてください。</p>
+<p class="image-container"><img alt="s219" src="img/bf513ed19db22ef2.png"></p>
+<p>AppSheetで使える関数を設定することができます。 <code>NOW()</code> と入力すると、現在日時を取得することができます。設定したら右下にある［Save］ボタンをクリックします。</p>
+<pre><code>NOW()
+</code></pre>
+<p class="image-container"><img alt="s220" src="img/50d297cd46632a76.png"></p>
+<p>更新日時は別途更新したときに日付を変更してほしいので、専用の設定を行います。 <code>UPDATE BEHAVIOR</code> 項目にある <code>Reset on edit?</code> を有効化してください。これで編集し終わったときにだけNOW()関数が実行されて、更新日時として日時が更新されるようになります。</p>
+<p class="image-container"><img alt="s221" src="img/c9a88683d92457a4.png"></p>
+<h2 is-upgraded>2-6. 動作確認</h2>
+<p>それでは動作確認してみましょう。右側のプレビュー画面にある［＋］ボタンをクリックして書籍を新規登録してみましょう。Webシミュレーターではバーコードの読み取りができないので、スマホで確認してください。</p>
+<p class="image-container"><img alt="s222" src="img/39049deea30a756a.png"></p>
+<h2 is-upgraded>2-7. アプリから動作確認</h2>
+<p>iPhoneの方はAppStore、Androidの方はPlayストアからそれぞれ「AppSheet」アプリをインストールしてください。お使いのGoogleアカウントでログインすると作成したアプリが表示されます。</p>
+<p>■iPhoneの方<br><a href="https://apps.apple.com/jp/app/appsheet/id732548900?mt=8" target="_blank">https://apps.apple.com/jp/app/appsheet/id732548900?mt=8</a></p>
+<p>■Androidの方<br><a href="https://play.google.com/store/apps/details?id=x1Trackmaster.x1Trackmaster&hl=ja" target="_blank">https://play.google.com/store/apps/details?id=x1Trackmaster.x1Trackmaster&amp;hl=ja</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="AppSheet用関数を使ってみよう！" duration="0">
+        <p>エクセルで言う関数をAppSheetで使うことができます。複雑な計算や文字列操作といった処理を行うことができます。</p>
+<h2 is-upgraded>3-1. テーブルを追加する</h2>
+<p>Tablesタブをクリックして <code>+ Add New Table</code> をクリックします。</p>
+<p class="image-container"><img alt="s300" src="img/59a092e4618107.png"></p>
+<p><code>Google</code> をクリックします。</p>
+<p class="image-container"><img alt="s301" src="img/12ca2dfbac4498b6.png"></p>
+<p>Step1で作成した <code>Form</code> スプレッドシートファイルを選択して <code>Select</code> ボタンをクリックします。</p>
+<p class="image-container"><img alt="s302" src="img/3975c45952fd8c82.png"></p>
+<p>このテーブルは特にデータベース自体を編集することはないので、 <code>Read-Only</code> を選択して <code>Add This Table</code> ボタンをクリックします。</p>
+<p class="image-container"><img alt="s303" src="img/6f1a09a02d37b570.png"></p>
+<p>テーブル名を <code>Form</code> に変更します。</p>
+<p class="image-container"><img alt="s304" src="img/7d705c3eff5efb10.png"></p>
+<h2 is-upgraded>3-2. 関数を設定する</h2>
+<p><code>Columns</code> タブをクリックして <code>Add Virtual Column</code> ボタンをクリックします。計算用の仮想列を追加します。</p>
+<p class="image-container"><img alt="s305" src="img/8f3492ff7360e758.png"></p>
+<p>下記のように設定します。設定したら右上にある <code>Done</code> ボタンをクリックします。これで「保有チェック」で「持っている」と設定しているものだけをリストでピックアップします。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Column name</p>
+</td><td colspan="1" rowspan="1"><p>Select</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>App formula</p>
+</td><td colspan="1" rowspan="1"><p>SELECT(Data[保有チェック], [保有チェック] = 持っている)</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s306" src="img/b51e11235a662ee1.png"></p>
+<p>続いて他にも列を追加します。下記を追加してください。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Column name</p>
+</td><td colspan="1" rowspan="1"><p>AllData</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>App formula</p>
+</td><td colspan="1" rowspan="1"><p>SELECT(Data[保有チェック], true)</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s307" src="img/65ee13904d8aed12.png"></p>
+<p>画面のように設定されていれば問題ありません。一度右上の <code>SAVE</code> ボタンをクリックします。</p>
+<p class="image-container"><img alt="s308" src="img/81fae06b63217f00.png"></p>
+<p>続いて仮想列を2つ追加します。下記を追加してください。追加したら再度 <code>SAVE</code> ボタンをクリックします。SELECTで抽出した条件のリストを <code>COUNT</code> 関数でいくつあるか数えています。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Column name</p>
+</td><td colspan="1" rowspan="1"><p>SelectCount</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>App formula</p>
+</td><td colspan="1" rowspan="1"><p>COUNT([Select])</p>
+</td></tr>
+</table>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Column name</p>
+</td><td colspan="1" rowspan="1"><p>SelectAllCount</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>App formula</p>
+</td><td colspan="1" rowspan="1"><p>COUNT([AllData])</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s309" src="img/680fa01be119a3f3.png"></p>
+<p>最後に下記の仮想列を追加して、 <code>SAVE</code> ボタンをクリックします。 <code>CONCATENATE</code> で文字列を操作することができます。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Column name</p>
+</td><td colspan="1" rowspan="1"><p>持っている数／登録数</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>App formula</p>
+</td><td colspan="1" rowspan="1"><p>CONCATENATE([SelectCount], &#34;／&#34;, [SelectAllCount], &#34;冊&#34;)</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s310" src="img/2aaba75b9923d2e7.png"></p>
+<h2 is-upgraded>3-3. Viewをメニューに追加する</h2>
+<p>これまで設定したForm情報をメニュー画面に設置して、メニュー画面から表示します。 左側メニューにある <code>UX</code> をクリックして、 <code>+ Add New View</code> をクリックします。</p>
+<p class="image-container"><img alt="s311" src="img/e64bebeff0990e72.png"></p>
+<p>Viewの設定を行います。下記のように設定してください。</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>View name</p>
+</td><td colspan="1" rowspan="1"><p>所持数</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>For this data</p>
+</td><td colspan="1" rowspan="1"><p>Form</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>View type</p>
+</td><td colspan="1" rowspan="1"><p>detail</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Position</p>
+</td><td colspan="1" rowspan="1"><p>menu</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="s312" src="img/47ddecf225a097b6.png"></p>
+<p>VIEW OPTIONS 項目にある <code>Column order</code> に先程追加した「持っている数／登録数」をプルダウンメニューから選択します。これで画面上には 「2／3冊」というように指定した項目のみを表示することができます。</p>
+<p class="image-container"><img alt="s313" src="img/9734ac023a26a842.png"></p>
+<p>DISPLAY 項目にある <code>Icon</code> でお好きなアイコンを指定してください。ここまで設定したら右上の <code>SAVE</code> ボタンをクリックします。</p>
+<p class="image-container"><img alt="s314" src="img/33fbad90a898142c.png"></p>
+<h2 is-upgraded>3-4. 余計なViewを削除する</h2>
+<p>自動的に余計なViewが追加されていまっているので削除しておきます。PRIMARY VIEWS項目にある「シート1」という名前のViewをクリックして、<code>Delete</code> ボタンをクリックして削除してください。忘れずに右上の <code>SAVE</code> ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="s315" src="img/87303e16e1dd2e1c.png"></p>
+<h2 is-upgraded>3-5. 動作確認する</h2>
+<p>シミュレーターの左上にあるメニューボタンをクリックしてください。メニューが展開されて「所持数」という項目が追加されています。クリックすると、「持っている数／登録数」が確認できるようになっています。 元の画面には画面下部にある「書籍リスト」をクリックしてください。</p>
+<p class="image-container"><img alt="s316" src="img/d0be30f003b94ef1.png"></p>
+<h2 is-upgraded>まとめ</h2>
+<p>いかがでしたでしょうか？ノンコーティングでここまでのアプリを短時間で作成することができました。 10名までは無料で配布できるので、お友だちとシェアしてみてはいかがでしょうか？アイデア次第で面白いアプリを作ることができますので是非チャレンジしてみましょう！</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

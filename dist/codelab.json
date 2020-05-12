@@ -1,0 +1,17 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-05-12T11:30:14+09:00",
+  "id": "dist",
+  "duration": 0,
+  "title": "AppSheetハンズオン【基礎編】",
+  "summary": "",
+  "source": "handson.md",
+  "theme": "",
+  "status": null,
+  "category": null,
+  "tags": [],
+  "url": "dist"
+}
